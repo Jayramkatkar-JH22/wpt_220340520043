@@ -1,0 +1,116 @@
+<html>
+
+<body>
+
+	<form action="add" method="get">
+		<Br />bookid<input type="text" name="bookid" id="bookid" />
+		<span id="msg" name="msg">msg shows here</span><br><br>
+		bookname<input type="text" name="bookname" id="bookname" /><br><br>
+		price<input type="text" name="price" id="price" /><br><br>
+		<button id="btn"> add</button>
+	</form>
+	<hr>
+	<span id="list">list shows here</span>
+	<!-- <form action="poc1" method="post">
+<Br/>whocares<input type="text" name="whocares"/>
+<input type="submit" value="post"/>
+</form>
+
+<button id="b2"> jquery works</button> -->
+
+
+</body>
+
+<script src="jquery-3.5.1.min.js"></script>
+<script>//our scrip will come here 
+
+
+
+	$(document).ready(function () {
+
+		function getbookid(bookid) {
+			for (let index = 0; index < bookdet.length; index++) {
+				if (bookdet[index].bookid = itemno) {
+					output.bookfoundstatus = true;
+					output.bookdettais = bookdet[i];
+					break;
+				}
+				return output;
+			}
+		};
+
+		$('#btn').click(() => {
+			() => {
+				let input = {
+					bid=$("#bookid").val(),
+					bname=$("#bookname").val(),
+					bprc=$("#price").val(),
+
+				};
+				let ajaxparas = {
+					data: {},
+					url="http://localhost:8081//abc/add",
+					type: 'get',
+					datatype: "json",
+					success: (dbs) => {
+						if (dbs) {
+							$("#msg").text("added succesfully");
+
+						}
+						else {
+							$("#msg").text("could not added");
+						}
+
+					},
+
+				}
+				$.ajax(ajaxparas);
+				show();
+			}
+		});
+
+			function show() {
+				let ajaxparas = {
+					data: {},
+					url="http://localhost:8081/getall",
+					type: 'get',
+					datatype: "json",
+					success: (dbs) => {
+						bookdet = dbs;
+						let bookobj = "";
+						for (let index = 0; index < bookdet.length; index++) {
+							bookobj += "<br>" + bookdet[index].bookid + " " + bookdet[index].bookname + " " + bookdet[index].price;
+
+						}
+						$('#list').html(bookobj);
+						document.getElementById('#list').innerHTML = bookobj;
+
+					},
+					error: (error) => {
+						console.error(error);
+					}
+				}
+
+			};
+			$.ajax(ajaxparas);
+
+
+
+			show();
+
+
+			// console.log("in the dom");
+			// $("#btn").click(function () 
+			// 	{ 
+			// 		//console.log("jquery works");
+			// 		alert("jquery works")
+			// 	});
+
+			// });
+		}
+
+	
+</script>
+
+
+</html>
